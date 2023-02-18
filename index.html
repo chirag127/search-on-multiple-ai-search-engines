@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Search on Multiple AI Search Engines</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      #search-form {
+        display: flex;
+        align-items: center;
+        margin: 20px 0;
+      }
+      #search-input {
+        flex: 1;
+        height: 40px;
+        font-size: 18px;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-right: 10px;
+      }
+      #search-button {
+        height: 40px;
+        font-size: 18px;
+        padding: 5px 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Search on Multiple AI Search Engines</h1>
+    <form id="search-form">
+      <input type="text" id="search-input" placeholder="Search...">
+      <button type="submit" id="search-button">Search</button>
+    </form>
+    <script>
+      const searchForm = document.getElementById('search-form');
+      const searchInput = document.getElementById('search-input');
+      const searchButton = document.getElementById('search-button');
+
+      searchForm.addEventListener('submit', event => {
+        event.preventDefault();
+
+        const query = searchInput.value.trim();
+
+        if (query) {
+          const neevaUrl = `https://neeva.com/search?q=${encodeURIComponent(query)}`;
+          const perplexityAIUrl = `https://www.perplexity.ai/search?q=${encodeURIComponent(query)}`;
+          const andiUrl = `https://andisearch.com/?query=${encodeURIComponent(query)}`;
+          const youUrl = `https://you.com/search?q=${encodeURIComponent(query)}&fromSearchBar=true&tbm=youchat`;
+
+          window.open(neevaUrl, '_blank');
+          window.open(perplexityAIUrl, '_blank');
+          window.open(andiUrl, '_blank');
+          window.open(youUrl, '_blank');
+        }
+      });
+    </script>
+  </body>
+</html>
