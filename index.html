@@ -35,6 +35,19 @@
             border-radius: 4px;
             cursor: pointer;
         }
+
+        #github-link {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 14px;
+            text-decoration: none;
+            color: #4CAF50;
+        }
+
+        #github-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -45,35 +58,38 @@
         <button type="submit" id="search-button">Search</button>
     </form>
     <script>
-const searchForm = document.getElementById('search-form');
-const searchInput = document.getElementById('search-input');
-const searchButton = document.getElementById('search-button');
+        const searchForm = document.getElementById('search-form');
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
 
-searchForm.addEventListener('submit', event => {
-    event.preventDefault();
+        searchForm.addEventListener('submit', event => {
+            event.preventDefault();
 
-    const query = searchInput.value.trim();
+            const query = searchInput.value.trim();
 
-    if (query) {
-        const searchEngines = [
-            { name: "Neeva", url: `https://neeva.com/search?q=${encodeURIComponent(query)}`, accuracy: 0.4 },
-            { name: "Perplexity AI", url: `https://www.perplexity.ai/search?q=${encodeURIComponent(query)}`, accuracy: 0.1 },
-            { name: "Andi", url: `https://andisearch.com/?query=${encodeURIComponent(query)}`, accuracy: 0.3 },
-            { name: "You.com", url: `https://you.com/search?q=${encodeURIComponent(query)}&fromSearchBar=true&tbm=youchat`, accuracy: 0.7 },
-            { name: "Phind", url: `https://phind.com/search?q=${encodeURIComponent(query)}`, accuracy: 0.8 },
-            { name: "Bing", url: `https://bing.com/search?q=${encodeURIComponent(query)}`, accuracy: 0.95 }
-        ];
+            if (query) {
+                const searchEngines = [
+//                     { name: "Neeva", url: `https://neeva.com/search?q=${encodeURIComponent(query)}`, accuracy: 0.4 },
+//                     { name: "Perplexity AI", url: `https://www.perplexity.ai/search?q=${encodeURIComponent(query)}`, accuracy: 0.1 },
+//                     { name: "Andi", url: `https://andisearch.com/?query=${encodeURIComponent(query)}`, accuracy: 0.3 },
+                    { name: "You.com", url: `https://you.com/search?q=${encodeURIComponent(query)}&fromSearchBar=true&tbm=youchat`, accuracy: 0.7 },
+                    { name: "Phind", url: `https://phind.com/search?q=${encodeURIComponent(query)}`, accuracy: 0.8 },
+                    { name: "Bing", url: `https://bing.com/search?q=${encodeURIComponent(query)}`, accuracy: 0.95 }
+                ];
 
-        // Sort search engines by accuracy in ascending order
-        searchEngines.sort((a, b) => a.accuracy - b.accuracy);
+                // Sort search engines by accuracy in ascending order
+                searchEngines.sort((a, b) => a.accuracy - b.accuracy);
 
-        // Open the search engines in the opposite order of accuracy
-        for (let i = searchEngines.length - 1; i >= 0; i--) {
-            window.open(searchEngines[i].url, "_blank");
-        }
-    }
-});
-    </script>
-</body>
-
-</html>
+                // Open the search engines in the opposite order of accuracy
+                for (let i = searchEngines.length - 1; i >= 0; i--) {
+                    if (i === searchEngines.length - 1) {
+                        // Open the first search engine in a new tab
+                        window.open(searchEngines[i].url, "_blank");
+                    } else {
+                        // Open the remaining search engines in the background
+                        window.open(searchEngines[i].url);
+                    }
+                }
+            }
+        });
+   
