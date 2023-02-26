@@ -9,12 +9,12 @@ searchForm.addEventListener('submit', event => {
 
     if (query) {
         const searchEngines = [
-            { name: "Neeva", url: `https://neeva.com/search?q=${encodeURIComponent(query)}`, accuracy: 0.9 },
-            { name: "Perplexity AI", url: `https://www.perplexity.ai/search?q=${encodeURIComponent(query)}`, accuracy: 0.8 },
-            { name: "Andi", url: `https://andisearch.com/?query=${encodeURIComponent(query)}`, accuracy: 0.7 },
-            { name: "You.com", url: `https://you.com/search?q=${encodeURIComponent(query)}&fromSearchBar=true&tbm=youchat`, accuracy: 0.6 },
-            { name: "Phind", url: `https://phind.com/search?q=${encodeURIComponent(query)}`, accuracy: 0.5 },
-            { name: "Bing", url: `https://bing.com/search?q=${encodeURIComponent(query)}`, accuracy: 0.4 }
+            { name: "Neeva", url: `https://neeva.com/search?q=${encodeURIComponent(query)}`, accuracy: 0.4 },
+            { name: "Perplexity AI", url: `https://www.perplexity.ai/search?q=${encodeURIComponent(query)}`, accuracy: 0.1 },
+            { name: "Andi", url: `https://andisearch.com/?query=${encodeURIComponent(query)}`, accuracy: 0.3 },
+            { name: "You.com", url: `https://you.com/search?q=${encodeURIComponent(query)}&fromSearchBar=true&tbm=youchat`, accuracy: 0.7 },
+            { name: "Phind", url: `https://phind.com/search?q=${encodeURIComponent(query)}`, accuracy: 0.8 },
+            { name: "Bing", url: `https://bing.com/search?q=${encodeURIComponent(query)}`, accuracy: 0.95 }
         ];
 
         // Sort search engines by accuracy in ascending order
