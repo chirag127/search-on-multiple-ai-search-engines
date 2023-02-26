@@ -1,105 +1,28 @@
-<!DOCTYPE html>
-<html>
+const searchForm = document.getElementById('search-form');
+const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button');
 
-<head>
-    <meta charset="UTF-8">
-    <title>Search on Multiple AI Search Engines</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
+searchForm.addEventListener('submit', event => {
+    event.preventDefault();
+
+    const query = searchInput.value.trim();
+
+    if (query) {
+        const searchEngines = [
+            { name: "Neeva", url: `https://neeva.com/search?q=${encodeURIComponent(query)}`, accuracy: 0.9 },
+            { name: "Perplexity AI", url: `https://www.perplexity.ai/search?q=${encodeURIComponent(query)}`, accuracy: 0.8 },
+            { name: "Andi", url: `https://andisearch.com/?query=${encodeURIComponent(query)}`, accuracy: 0.7 },
+            { name: "You.com", url: `https://you.com/search?q=${encodeURIComponent(query)}&fromSearchBar=true&tbm=youchat`, accuracy: 0.6 },
+            { name: "Phind", url: `https://phind.com/search?q=${encodeURIComponent(query)}`, accuracy: 0.5 },
+            { name: "Bing", url: `https://bing.com/search?q=${encodeURIComponent(query)}`, accuracy: 0.4 }
+        ];
+
+        // Sort search engines by accuracy in ascending order
+        searchEngines.sort((a, b) => a.accuracy - b.accuracy);
+
+        // Open the search engines in the opposite order of accuracy
+        for (let i = searchEngines.length - 1; i >= 0; i--) {
+            window.open(searchEngines[i].url, "_blank");
         }
-
-        #search-form {
-            display: flex;
-            align-items: center;
-            margin: 20px 0;
-        }
-
-        #search-input {
-            flex: 1;
-            height: 40px;
-            font-size: 18px;
-            padding: 5px 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-right: 10px;
-        }
-
-        #search-button {
-            height: 40px;
-            font-size: 18px;
-            padding: 5px 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-
-<body>
-    <h1>Search on Multiple AI Search Engines</h1>
-    <form id="search-form">
-        <input type="text" id="search-input" placeholder="Search...">
-        <button type="submit" id="search-button">Search</button>
-    </form>
-    <script>
-        const searchForm = document.getElementById('search-form');
-        const searchInput = document.getElementById('search-input');
-        const searchButton = document.getElementById('search-button');
-
-        searchForm.addEventListener('submit', event => {
-            event.preventDefault();
-
-            const query = searchInput.value.trim();
-
-            if (query) {
-                const searchEngines = [
-                    {
-                        name: "Neeva",
-                        url: `https://neeva.com/search?q=${encodeURIComponent(query)}`,
-                        accuracy: 0.9
-                    },
-                    {
-                        name: "Perplexity AI",
-                        url: `https://www.perplexity.ai/search?q=${encodeURIComponent(query)}`,
-                        accuracy: 0.9
-                    },
-                    {
-                        name: "Phind",
-                        url: `https://phind.com/search?q=${encodeURIComponent(query)}`,
-                        accuracy: 0.85
-                    },
-                    {
-                        name: "You.com",
-                        url: `https://you.com/search?q=${encodeURIComponent(query)}&fromSearchBar=true&tbm=youchat`,
-                        accuracy: 0.8
-                    },
-                    {
-                        name: "Andi",
-                        url: `https://andisearch.com/?query=${encodeURIComponent(query)}`,
-                        accuracy: 0.75
-                    },
-                    {
-                        name: "Bing",
-                        url: `https://www.bing.com/search?q=${encodeURIComponent(query)}`,
-                        accuracy: 0.95
-                    }
-                ];
-
-                // Sort the search engines by accuracy in descending order
-                searchEngines.sort((a, b) => b.accuracy - a.accuracy);
-
-                // Open each search engine URL with a 1-second delay between openings
-                searchEngines.forEach((engine, index) => {
-                    setTimeout(() => {
-                        window.open(engine.url, '_blank');
-                    }, index * 1000);
-                });
-            }
-        });
-    </script>
-</body>
-
-</html>
+    }
+});
