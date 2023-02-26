@@ -60,7 +60,11 @@
                 const andiUrl = `https://andisearch.com/?query=${encodeURIComponent(query)}`;
                 const youUrl = `https://you.com/search?q=${encodeURIComponent(query)}&fromSearchBar=true&tbm=youchat`;
                 const phindUrl = `https://phind.com/search?q=${encodeURIComponent(query)}`;
-
+                const bingUrl = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+                
+                
+                
+                window.open(bingUrl, '_blank');
                 window.open(neevaUrl, '_blank');
                 window.open(perplexityAIUrl, '_blank');
                 window.open(andiUrl, '_blank');
