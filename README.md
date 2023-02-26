@@ -5,7 +5,7 @@ This is a simple website that allows you to search on multiple AI search engines
 ## Features
 
 - Search on multiple AI search engines with a single query.
-- - Neeva
+- Neeva
 - Perplexity AI
 - Andi
 - You.com
